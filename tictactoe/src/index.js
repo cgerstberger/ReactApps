@@ -38,23 +38,18 @@ class Board extends React.Component {
   }
 
   render() {
+    let parents = [];
+    for(var i = 0; i < 3; i ++){
+      let children = [];
+      for(var j = 0; j < 3; j ++){
+        children[j] = this.renderSquare((i*3)+j);
+      }
+      parents.push(<div className="board-row">{children}</div>);
+    }
+
     return (
       <div>
-        <div className="board-row">
-          {this.renderSquare(0)}
-          {this.renderSquare(1)}
-          {this.renderSquare(2)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(3)}
-          {this.renderSquare(4)}
-          {this.renderSquare(5)}
-        </div>
-        <div className="board-row">
-          {this.renderSquare(6)}
-          {this.renderSquare(7)}
-          {this.renderSquare(8)}
-        </div>
+        {parents}
       </div>
     );
   }
@@ -112,16 +107,20 @@ class Game extends React.Component {
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ?
-        'Go to move #' + move + " (" + step.pos.col + "," + step.pos.row + ")" :
-        'Go to game start';
+      var desc;
+      if(this.state.stepNumber == move){
+        desc = move ?
+          <b>{'Go to move #' + move + " (" + step.pos.col + "," + step.pos.row + ")"}</b> :
+          <b>{'Go to game start'}</b>;
+      } else {
+        desc = move ?
+          'Go to move #' + move + " (" + step.pos.col + "," + step.pos.row + ")" :
+          'Go to game start';
+      }
+
       return (
         <li key={move}>
-          <button onClick={(ele) => {
-            document.getElementById("li button").style.fontWeight = "bold";
-            ele.target.style.fontWeight = "bold";
-            this.jumpTo(move);
-            }}>{desc}</button>
+          <button onClick={() => this.jumpTo(move)}>{desc}</button>
         </li>
       );
     })

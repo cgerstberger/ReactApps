@@ -40,9 +40,10 @@ export default class WeightStatistics extends Component {
 				]
 			}]
 		}
-    var content = <CanvasJSChart options = {options} /* onRef={ref => this.chart = ref} */ />;
     return (
-      <Card header="Statistics" content={content}></Card>
+      <Card header="Statistics">
+				<CanvasJSChart options = {options} /* onRef={ref => this.chart = ref} */ />
+			</Card>
     )
   }
 }

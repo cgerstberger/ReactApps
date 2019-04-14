@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../common/card';
-import 'bootstrap/dist/css/bootstrap.css';
+// import 'bootstrap/dist/css/bootstrap.css';
 
 export default class DailyWeight extends Component {
   constructor(){
@@ -11,12 +11,6 @@ export default class DailyWeight extends Component {
     }
   }
 
-  toggleSlider(){
-    this.setState({
-      slidedOut: !this.state.slidedOut
-    });
-  }
-
   showDailyWeight(show){
     this.setState({
       showDailyWeight: show
@@ -24,18 +18,16 @@ export default class DailyWeight extends Component {
   }
 
   render() {
-    var content =
-      <div className="form-row">
-        <div className="col-10">
-          <input type="number" className="form-control inputRightAlign" placeholder="kg"></input>
-        </div>
-          <button className="col-2 btn btn-primary" onClick={() => this.showDailyWeight(false)}>OK</button>
-      </div>;
     return (
-      <div className={this.state.showDailyWeight ? 'showDailyWeight' : 'showDailyWeight showDailyWeightNot'}>
-        <Card 
-              header="DailyWeight" 
-              content={content} ></Card>
+      <div className={this.state.showDailyWeight ? '' : 'cardInvisible'}>
+        <Card header="DailyWeight">
+          <div className="form-row">
+            <div className="col-10">
+              <input type="number" className="form-control input-right-align" placeholder="kg"></input>
+            </div>
+            <button className="col-2 btn btn-primary" onClick={() => this.showDailyWeight(false)}>OK</button>
+          </div>
+        </Card>
       </div>
     )
   }

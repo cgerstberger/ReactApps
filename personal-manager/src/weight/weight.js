@@ -6,7 +6,7 @@ import WeightStatistics from './weight_statistics';
 export default class Weight extends Component {
   render() {
     return (
-      <div className="container">
+      <div>
         <DailyWeight></DailyWeight>
         <WeightHistory></WeightHistory>
         <WeightStatistics></WeightStatistics>

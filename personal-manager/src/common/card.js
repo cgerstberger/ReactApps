@@ -8,7 +8,7 @@ export default class Card extends Component {
                 <div className="card-body">
                     <h5 className="card-title">{this.props.header}</h5>
                     <div>
-                        {this.props.content}
+                        {this.props.children}
                     </div>
                 </div>
             </div>

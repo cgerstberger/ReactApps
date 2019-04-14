@@ -16,9 +16,10 @@ export default class WeightHistory extends Component {
   }
 
   render() {
-    var content = <TableWeightHistory weightEntries={this.state.weightEntries}></TableWeightHistory>
     return (
-      <Card header="History" content={content}></Card>
+      <Card header="History">
+        <TableWeightHistory weightEntries={this.state.weightEntries}></TableWeightHistory>
+      </Card>
     )
   }
 }

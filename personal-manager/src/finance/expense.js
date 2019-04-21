@@ -47,7 +47,9 @@ export default class Expense extends React.Component{
                                 </div>
                             </div>
                         </div>
-                        <button className="col-2 btn btn-primary" onClick={() => this.showExpense(false)}>OK</button>
+                        <div className="col-2">
+                            <button className="col-12 btn btn-primary" onClick={() => this.showExpense(false)}>OK</button>
+                        </div>
                     </div>
                     <div className="float-right">
                         <div className="form-check form-check-inline">
@@ -58,14 +60,6 @@ export default class Expense extends React.Component{
                             <input className="form-check-input" type="radio" name="radioTime" id="radioTime2"></input>
                             <label className="form-check-label" htmlFor="radioTime2">Time: </label>
                             <DateTimePicker onChange={this.onChange} value={this.state.date}></DateTimePicker>
-
-                            {/*  */}
-
-
-                            {/* <DateTimePicker 
-                                onChange={this.setDate}
-                                DatePicker={DatePickerDialog}
-                                TimePicker={TimePickerDialog}/> */}
                         </div>
                     </div>
                 </Card>

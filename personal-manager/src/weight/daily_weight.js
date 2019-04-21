@@ -25,7 +25,7 @@ export default class DailyWeight extends Component {
             <div className="col-10">
               <input type="number" className="form-control input-right-align" placeholder="kg"></input>
             </div>
-            <button className="col-2 btn btn-primary" onClick={() => this.showDailyWeight(false)}>OK</button>
+            <button type="button" className="col-2 btn btn-primary" onClick={() => this.showDailyWeight(false)}>OK</button>
           </div>
         </Card>
       </div>

@@ -18,7 +18,7 @@ export default class WeightHistory extends Component {
   render() {
     return (
       <Card header="History">
-        <TableWeightHistory weightEntries={this.state.weightEntries}></TableWeightHistory>
+        <TableWeightHistory weightEntries={this.props.weightEntries}></TableWeightHistory>
       </Card>
     )
   }

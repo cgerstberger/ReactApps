@@ -3,29 +3,60 @@ import Card from '../common/card';
 // import 'bootstrap/dist/css/bootstrap.css';
 
 export default class DailyWeight extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
     this.state = {
-      showDailyWeight: true,
-
+      weight: "",
+      cardVanish: false,
+      cardGone: false
     }
+    this.handleChangeWeight = this.handleChangeWeight.bind(this);
   }
 
-  showDailyWeight(show){
+  addWeight(){
+    this.hideCard(true);
+    this.props.addDailyWeight(this.state.weight);
+  }
+
+  hideCard(hide){
     this.setState({
-      showDailyWeight: show
+      cardVanish: hide
+    }, () => {
+      console.log("wait 1s");
+      setTimeout(() => {
+        console.log("1s gone");
+        this.setState({
+          cardGone: hide
+        })
+      }, 750);
+    })
+  }
+
+  handleChangeWeight(event){
+    this.setState({
+      weight: event.target.value
     })
   }
 
   render() {
+    var cardClasses = 'myCard';
+    if(this.state.cardVanish)
+      cardClasses += ' cardVanish';
+    if(this.state.cardGone) 
+      cardClasses += ' cardGone'
     return (
-      <div className={this.state.showDailyWeight ? '' : 'cardInvisible'}>
+      <div className={cardClasses}>
         <Card header="DailyWeight">
           <div className="form-row">
             <div className="col-10">
-              <input type="number" className="form-control input-right-align" placeholder="kg"></input>
+              <input 
+                type="number" 
+                className="form-control input-right-align" 
+                placeholder="kg" 
+                value={this.state.weight}
+                onChange={this.handleChangeWeight}></input>
             </div>
-            <button type="button" className="col-2 btn btn-primary" onClick={() => this.showDailyWeight(false)}>OK</button>
+            <button type="button" className="col-2 btn btn-primary" onClick={() => this.addWeight()}>OK</button>
           </div>
         </Card>
       </div>

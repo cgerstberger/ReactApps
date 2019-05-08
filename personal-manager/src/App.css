@@ -22,10 +22,21 @@
   text-align: right;
 }
 
-.cardInvisible {
-  display: none;
-}
-
 #myTabContent {
   padding-top: 20px;
+}
+
+.myCard {
+  /* -webkit-transition: width 2s, height 2s, background-color 2s, -webkit-transform 2s; */
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.cardVanish {
+  opacity: 0;
+  left: 100%;
+  transform: translateX(200px);
+}
+
+.cardGone {
+  display: none;
 }

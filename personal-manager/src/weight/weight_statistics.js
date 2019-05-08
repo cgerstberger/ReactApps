@@ -12,7 +12,7 @@ export default class WeightStatistics extends Component {
 			exportEnabled: true,
 			theme: "light2", // "light1", "dark1", "dark2"
 			title:{
-				text: "Bounce Rate by Week of Year"
+				text: "Weight over time"
 			},
 			axisY: {
 				title: "Weight",
@@ -21,28 +21,23 @@ export default class WeightStatistics extends Component {
 			},
 			axisX: {
 				title: "Date",
-				prefix: "W",
+				prefix: "D",
 				interval: 1
 			},
 			data: [{
 				type: "line",
-				toolTipContent: "Week {x}: {y}%",
+				toolTipContent: "Day {x}: {y}kg",
 				dataPoints: [
-					{ x: 1, y: 64 },
-					{ x: 2, y: 61 },
-					{ x: 3, y: 64 },
-					{ x: 4, y: 62 },
-					{ x: 5, y: 64 },
-					{ x: 6, y: 60 },
-					{ x: 7, y: 58 },
-					{ x: 8, y: 59 },
-					{ x: 9, y: 53 }
+					{ x: 1, y: 75 },
+					{ x: 2, y: 74.7 },
+					{ x: 3, y: 74.2 },
+					{ x: 4, y: 74.5 }
 				]
 			}]
 		}
     return (
       <Card header="Statistics">
-				<CanvasJSChart options = {options} /* onRef={ref => this.chart = ref} */ />
+				<CanvasJSChart options = {options} style={{width: "100%"}} /* onRef={ref => this.chart = ref} */ />
 			</Card>
     )
   }

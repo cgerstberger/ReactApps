@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DailyWeight from './daily_weight';
 import WeightHistory from './weight_history';
-import WeightStatistics from './weight_statistics';
+import WeightStatistics from './weight_statistics_recharts';
 
 export default class Weight extends Component {
   constructor(props){
@@ -29,7 +29,7 @@ export default class Weight extends Component {
       <div>
         <DailyWeight addDailyWeight={(weight) => this.addDailyWeight(weight)}></DailyWeight>
         <WeightHistory weightEntries={this.state.weightEntries}></WeightHistory>
-        <WeightStatistics></WeightStatistics>
+        <WeightStatistics weightEntries={this.state.weightEntries}></WeightStatistics>
       </div>
     )
   }

@@ -6,7 +6,17 @@ import CanvasJSReact from '../canvasjs-2.3.1/canvasjs.react';
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class WeightStatistics extends Component {
+
+	changeUpdate(event){
+		this.render();
+	}
+
   render() {
+
+		var data = [];
+		for(var i = 0; i < this.props.weightEntries.length; i ++){
+			data[i] = {x: (i+1), y: this.props.weightEntries[i].weight}
+		}
     const options = {
 			animationEnabled: true,
 			exportEnabled: true,
@@ -27,17 +37,17 @@ export default class WeightStatistics extends Component {
 			data: [{
 				type: "line",
 				toolTipContent: "Day {x}: {y}kg",
-				dataPoints: [
-					{ x: 1, y: 75 },
-					{ x: 2, y: 74.7 },
-					{ x: 3, y: 74.2 },
-					{ x: 4, y: 74.5 }
-				]
+				dataPoints: data
 			}]
 		}
     return (
       <Card header="Statistics">
-				<CanvasJSChart options = {options} style={{width: "100%"}} /* onRef={ref => this.chart = ref} */ />
+				<div id="chartContainer"></div>
+				<CanvasJSChart 
+					ref={this.myRef} 
+					options = {options} 
+					style={{width: "100%"}}
+					onChange={this.changeUpdate} /* onRef={ref => this.chart = ref} */ />
 			</Card>
     )
   }

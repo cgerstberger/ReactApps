@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Card from '../common/card';
 import 'bootstrap/dist/css/bootstrap.css';
 import {
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
 } from 'recharts';
 
 const data = [
@@ -51,21 +51,23 @@ export default class WeightStatistics extends Component {
 		}
     return (
       <Card header="Statistics">
-				<LineChart
-					width={500}
-					height={300}
-					data={data2}
-					margin={{
-						top: 5, right: 30, left: 20, bottom: 5,
-					}}
-				>
-					<CartesianGrid strokeDasharray="3 3" />
-					<XAxis dataKey="day" />
-					<YAxis type="number" domain={[Math.round(min-2), Math.round(max+2)]}/>
-					<Tooltip />
-					{/* <Legend /> */}
-					<Line type="monotone" dataKey="weight" stroke="#8884d8" activeDot={{ r: 8 }} />
-				</LineChart>
+				<ResponsiveContainer width='100%' aspect={4.0/1.5}>
+					<LineChart
+						width={'auto'}
+						height={300}
+						data={data2}
+						margin={{
+							top: 5, right: 30, left: 20, bottom: 5,
+						}}
+					>
+						<CartesianGrid strokeDasharray="3 3" />
+						<XAxis dataKey="day" />
+						<YAxis type="number" domain={[Math.round(min-2), Math.round(max+2)]}/>
+						<Tooltip />
+						{/* <Legend /> */}
+						<Line type="monotone" dataKey="weight" stroke="#8884d8" activeDot={{ r: 8 }} />
+					</LineChart>
+				</ResponsiveContainer>
 			</Card>
     );
   }

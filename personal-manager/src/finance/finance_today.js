@@ -5,23 +5,23 @@ import 'bootstrap/dist/css/bootstrap.css';
 export default class FinanceToday extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      financesToday: [
-        {name: "Leberkäsesemmel", time: "10:30", value: 2.49},
-        {name: "Monitor", time: "10:45", value: 75},
-        {name: "Mittagessen", time: "12:00", value: 5.70},
-        {name: "Kopfhörer", time: "17:50", value: 49.99}
-      ]
-    }
+    // this.state = {
+    //   financesToday: [
+    //     {name: "Leberkäsesemmel", time: "10:30", value: 2.49},
+    //     {name: "Monitor", time: "10:45", value: 75},
+    //     {name: "Mittagessen", time: "12:00", value: 5.70},
+    //     {name: "Kopfhörer", time: "17:50", value: 49.99}
+    //   ]
+    // }
   }
 
   render() {
       const arr1 = [1,2,3,4];
     return (
       <Card header="Today">
-        <TableFinances financesToday={this.state.financesToday}></TableFinances>
+        <TableFinances dailyFinances={this.props.dailyFinances}></TableFinances>
         <div className="float-right">
-            <b>{this.state.financesToday.reduce((a,c) => {
+            <b>{this.props.dailyFinances.reduce((a,c) => {
                 console.log(a.value + " " + c.value);
                 return {
                     name: "",
@@ -38,7 +38,7 @@ export default class FinanceToday extends Component {
 const TableFinances = (props) => 
     <table className="table">
         <tbody>
-            {props.financesToday.map(entry => 
+            {props.dailyFinances.map(entry => 
                 <tr>
                     <td style={tdName}>{entry.name}</td>
                     <td style={tdDate}>{entry.time}</td>

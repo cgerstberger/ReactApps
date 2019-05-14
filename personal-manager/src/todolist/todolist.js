@@ -21,11 +21,22 @@ export default class Todolist extends Component {
     })
   }
 
+  deleteItem = ele => {
+    var array = this.state.todos;
+    var index = array.indexOf(ele);
+    if(index != -1){
+      array.splice(index, 1);
+      this.setState({
+        todos: array
+      });
+    }
+  }
+
   render() {
     return (
       <div>
         <NewItem pushItem={this.pushItem}></NewItem>
-        <List todos={this.state.todos}></List>
+        <List todos={this.state.todos} deleteItem={this.deleteItem}></List>
       </div>
     )
   }

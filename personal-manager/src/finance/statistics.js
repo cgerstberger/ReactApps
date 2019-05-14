@@ -1,48 +1,45 @@
 import React, { Component } from 'react';
 import Card from '../common/card';
 import 'bootstrap/dist/css/bootstrap.css';
-import CanvasJSReact from '../canvasjs-2.3.1/canvasjs.react';
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+import {
+  LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer
+} from 'recharts';
 
 export default class FinanceStatistics extends Component {
   render() {
-    const options = {
-			animationEnabled: true,
-			exportEnabled: true,
-			theme: "light2", // "light1", "dark1", "dark2"
-			title:{
-				text: "Expenses per day"
-			},
-			axisY: {
-				title: "Euro",
-				includeZero: false,
-				suffix: "€"
-			},
-			axisX: {
-				title: "Date",
-				prefix: "D",
-				interval: 1
-			},
-			data: [{
-				type: "line",
-				toolTipContent: "Day {x}: {y}€",
-				dataPoints: [
-					{ x: 1, y: 13.8 },
-					{ x: 2, y: 5.4 },
-					{ x: 3, y: 78 },
-					{ x: 4, y: 60 },
-					{ x: 5, y: 4.2 },
-					{ x: 6, y: 10.9 },
-					{ x: 7, y: 6.9 },
-					{ x: 8, y: 0 },
-					{ x: 9, y: 18.2 }
-				]
-			}]
+		var data = [];
+		var min = 500000;
+		var max = 0;
+		for(var i = 0; i < this.props.financeHistory.length; i ++){
+			const value = this.props.financeHistory[i].value;
+			if(value < min)
+				min = value;
+			if(value > max)
+				max = value;
+			data[i] = {
+				date: this.props.financeHistory[i].date,
+				value: value
+			}
 		}
     return (
-      <Card header="Statistics">
-				<CanvasJSChart options = {options} /* onRef={ref => this.chart = ref} */ />
-			</Card>
+		<Card header="Statistics">
+			<ResponsiveContainer width='100%' aspect={4.0/1.5}>
+				<LineChart
+					width={'auto'}
+					height={300}
+					data={data}
+					margin={{
+						top: 5, right: 30, left: 20, bottom: 5,
+					}}
+				>
+					<CartesianGrid strokeDasharray="3 3" />
+					<XAxis dataKey="date" />
+					<YAxis type="number" domain={[Math.round(min-2), Math.round(max+2)]}/>
+					<Tooltip />
+					<Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
+				</LineChart>
+			</ResponsiveContainer>
+		</Card>
     )
-  }
+}
 }

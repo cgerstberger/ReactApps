@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DailyWeight from './daily_weight';
 import WeightHistory from './weight_history';
-import WeightStatistics from './weight_statistics_recharts';
+import WeightStatistics from './weight_statistics';
 
 export default class Weight extends Component {
   constructor(props){

@@ -10,12 +10,20 @@ export default class NewItem extends Component {
     };
   }
 
+  keyUpEvent = (event) => {
+    if(event.key == 'Enter'){
+      this.addItem();
+    }
+  }
+
   addItem = () => {
     const val = this.state.newItem;
-    this.props.pushItem({text: this.state.newItem});
-    this.setState({
-      newItem: ""
-    });
+    if(val !== ""){
+      this.props.pushItem({date: new Date(), text: this.state.newItem});
+      this.setState({
+        newItem: ""
+      });
+    }
   }
 
   handleChange = event => {
@@ -33,7 +41,8 @@ export default class NewItem extends Component {
                    className="form-control" 
                    placeholder="What is to do ..." 
                    value={this.state.newItem} 
-                   onChange={this.handleChange}></input>
+                   onChange={this.handleChange}
+                   onKeyUp={this.keyUpEvent}></input>
           </div>
           <button type="button" 
                   className="col-2 btn btn-primary" 

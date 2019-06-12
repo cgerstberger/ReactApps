@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import NewItem from './new_item';
 import List from './list';
+import {addTodoItem, readAllTodos} from "../db/dbFunctions";
 
 export default class Todolist extends Component {
 
@@ -13,12 +14,15 @@ export default class Todolist extends Component {
         {text: "MSc Project"}
       ]
     }
+
+    readAllTodos()
   }
 
   pushItem = ele => {
     this.setState({
       todos: [...this.state.todos, ele]
     })
+    addTodoItem(ele);
   }
 
   deleteItem = ele => {

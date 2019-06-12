@@ -61,7 +61,7 @@ export default class Expense extends React.Component{
 
     createNewExpense(){
         var myExpense = {
-            date: this.state.expense.date.toString(),
+            date: new Date(),
             name: this.state.expense.expenseName,
             value: parseFloat(this.state.expense.expenseValue)
         }
@@ -92,7 +92,8 @@ export default class Expense extends React.Component{
                             <button className="col-12 btn btn-primary" onClick={() => this.createNewExpense()}>OK</button>
                         </div>
                     </div>
-                    <div className="float-right">
+                    {/* possible feature for the future */}
+                    {/*<div className="float-right">
                         <div className="form-check form-check-inline">
                             <input className="form-check-input" 
                                 type="radio" 
@@ -114,7 +115,7 @@ export default class Expense extends React.Component{
                             <label className="form-check-label" htmlFor="radioTime2">Time: </label>
                             <DateTimePicker onChange={this.handleChangeDatePicker} value={this.state.expense.date}></DateTimePicker>
                         </div>
-                    </div>
+                    </div>*/}
                 </Card>
             </div>
         );

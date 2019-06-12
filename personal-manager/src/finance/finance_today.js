@@ -15,13 +15,15 @@ export default class FinanceToday extends Component {
     // }
   }
 
+
+
   render() {
       const arr1 = [1,2,3,4];
     return (
       <Card header="Today">
         <TableFinances dailyFinances={this.props.dailyFinances}></TableFinances>
         <div className="float-right">
-            <b>{this.props.dailyFinances.reduce((a,c) => {
+            <b>{this.props.dailyFinances.length != 0 && this.props.dailyFinances.reduce((a,c) => {
                 console.log(a.value + " " + c.value);
                 return {
                     name: "",
@@ -35,13 +37,22 @@ export default class FinanceToday extends Component {
   }
 }
 
+function formatDate(date) {
+  // var formattedDate = date.toLocaleDateString("de-DE", {weekday: "short", year: "numeric", month: "short", day: "numeric"});
+  var formattedDate = date.toLocaleTimeString("de-DE", {hour: '2-digit', minute:'2-digit'})
+  // var day = date.getDay();
+  // var month = date.getMonth();
+  // var year = date.getYear();
+  return formattedDate;
+}
+
 const TableFinances = (props) => 
     <table className="table">
         <tbody>
             {props.dailyFinances.map(entry => 
                 <tr>
                     <td style={tdName}>{entry.name}</td>
-                    <td style={tdDate}>{entry.time}</td>
+                    <td style={tdDate}>{formatDate(entry.date)}</td>
                     <td style={tdWeight}>{entry.value} €</td>
                 </tr>
             )}

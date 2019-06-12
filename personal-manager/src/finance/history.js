@@ -16,12 +16,19 @@ export default class FinanceHistory extends Component {
   }
 }
 
+function formatDate(date) {
+  var formattedDate = date.toLocaleDateString("de-DE", {weekday: "short", year: "numeric", month: "short", day: "numeric"});
+  // var formattedDate = date.toLocaleTimeString("de-DE", {hour: '2-digit', minute:'2-digit'})
+
+  return formattedDate;
+}
+
 const TableFinancesHistory = (props) => 
   <table className="table">
     <tbody>
       {props.financesHistory.map(entry => 
         <tr>
-          <td style={tdDate}>{entry.date}</td>
+          <td style={tdDate}>{formatDate(entry.date)}</td>
           <td style={tdValue}>{entry.value} €</td>
         </tr>
       )}

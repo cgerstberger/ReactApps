@@ -18,7 +18,6 @@ export default class FinanceToday extends Component {
 
 
   render() {
-      const arr1 = [1,2,3,4];
     return (
       <Card header="Today">
         <TableFinances dailyFinances={this.props.dailyFinances}></TableFinances>
@@ -60,12 +59,12 @@ const TableFinances = (props) =>
     </table>
 
 const tdName = {
-  width: "70%"
+  width: "50%"
 };
 const tdDate = {
-  width: "15%"
+  width: "20%"
 };
 const tdWeight = {
-  width: "15%",
+  width: "30%",
   textAlign: "right"
 };

@@ -13,10 +13,10 @@ export default class App extends Component {
 				<div className="container">
 					<ul className="nav nav-pills" id="myTab">
 						<li className="nav-item">
-							<a className="nav-link " id="weight-tab" data-toggle="tab" href="#weight">Weight</a>
+							<a className="nav-link active" id="weight-tab" data-toggle="tab" href="#weight">Weight</a>
 						</li>
 						<li className="nav-item">
-							<a className="nav-link active" id="finance-tab" data-toggle="tab" href="#finance">Finance</a>
+							<a className="nav-link " id="finance-tab" data-toggle="tab" href="#finance">Finance</a>
 						</li>
 						<li className="nav-item">
 							<a className="nav-link " id="todo-tab" data-toggle="tab" href="#todo">Todo list</a>
@@ -24,10 +24,10 @@ export default class App extends Component {
 					</ul>
 
 					<div className="tab-content" id="myTabContent">
-						<div className="tab-pane fade " id="weight">
+						<div className="tab-pane fade show active" id="weight">
 							<Weight></Weight>
 						</div>
-						<div className="tab-pane fade show active" id="finance">
+						<div className="tab-pane fade " id="finance">
 							<Finance></Finance>
 						</div>
 						<div className="tab-pane fade" id="todo">

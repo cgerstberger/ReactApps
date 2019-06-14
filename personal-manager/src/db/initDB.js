@@ -1,3 +1,9 @@
+
+
+/**
+ * Deprecated!!!
+ */
+
 //prefixes of implementation that we want to test
 window.indexedDB = window.indexedDB || window.mozIndexedDB || window.webkitIndexedDB || window.msIndexedDB;
 
@@ -29,6 +35,7 @@ request.onsuccess = function(event) {
 request.onupgradeneeded = function(event) {
    var db = event.target.result;
    var objectStore = db.createObjectStore("todos", {keyPath: "id"});
+   var weightStore = db.createObjectStore("weights", {keyPath: "id"});
    
 //    for (var i in employeeData) {
 //       objectStore.add(employeeData[i]);

@@ -13,9 +13,27 @@ export default class DailyWeight extends Component {
     this.handleChangeWeight = this.handleChangeWeight.bind(this);
   }
 
+  componentWillReceiveProps(props){
+    if(props != null && props.weightEntries != null) {
+      for(var i = 0; i < props.weightEntries.length; i ++){
+        console.log(props.weightEntries[i].date);
+        if(this.isDateEqualsCurrentDay(props.weightEntries[i].date)) {
+          this.hideCard(true);
+        }
+      }
+    }
+  }
+
+  isDateEqualsCurrentDay(date){
+    var curDate = new Date();
+    return curDate.getDate() == date.getDate()
+        && curDate.getMonth() == date.getMonth()
+        && curDate.getYear() == date.getYear();
+  }
+
   addWeight(){
     this.hideCard(true);
-    this.props.addDailyWeight(this.state.weight);
+    this.props.addDailyWeight({date: new Date(), weight: this.state.weight});
   }
 
   hideCard(hide){

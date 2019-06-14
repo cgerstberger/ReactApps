@@ -77,18 +77,18 @@ export default class Expense extends React.Component{
             <div className={this.state.showExpense ? '' : 'cardInvisible'}>
                 <Card header="Expense">
                     <div className="form-row">
-                        <div className="col-8">
+                        <div className="col-6 col-md-8">
                             <input type="text" className="form-control" placeholder="Kino, etc." onChange={this.handleChangeExpenseName}></input>
                         </div>
-                        <div className="col-2">
+                        <div className="col-3 col-md-2">
                             <div className="input-group mb-3">
-                                <input type="number" className="form-control input-right-align" onChange={this.handleChangeExpenseValue}></input>
-                                <div className="input-group-append">
+                                <input type="number" className="form-control input-right-align" placeholder="€" onChange={this.handleChangeExpenseValue}></input>
+                                {/* <div className="input-group-append">
                                     <span className="input-group-text">€</span>
-                                </div>
+                                </div> */}
                             </div>
                         </div>
-                        <div className="col-2">
+                        <div className="col-3 col-md-2">
                             <button className="col-12 btn btn-primary" onClick={() => this.createNewExpense()}>OK</button>
                         </div>
                     </div>

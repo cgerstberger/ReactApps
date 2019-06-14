@@ -40,7 +40,20 @@ request.onsuccess = function(event) {
     serviceWorker.unregister();
 };
 
+const dailyFinancesData = [
+   {id: "1", date: new Date(2019, 6, 12, 8, 27, 12), name:"Leberkäsesemmel", value: 2.49},
+   {id: "2", date: new Date(2019, 6, 12, 9, 20, 17), name:"Monitor", value: 75},
+   {id: "3", date: new Date(2019, 6, 12, 12, 12, 1), name:"Mittagessen", value: 5.70}
+];
 request.onupgradeneeded = function(event) {
    var db = event.target.result;
    var objectStore = db.createObjectStore("todos", {keyPath: "id"});
+   var weightStore = db.createObjectStore("weights", {keyPath: "id"});
+   var dailyFinancesStore = db.createObjectStore("dailyFinances", {keyPath: "id"});
+   var financesStore = db.createObjectStore("finances", {keyPath: "id"});
+
+      
+   // for (var i in dailyFinancesData) {
+   //    dailyFinancesStore.add(dailyFinancesData[i]);
+   // }
 }

@@ -36,9 +36,9 @@ const TableFinancesHistory = (props) =>
   </table>
 
 const tdDate = {
-  width: "80%"
+  width: "70%"
 };
 const tdValue = {
-  width: "20%",
+  width: "30%",
   textAlign: "right"
 };

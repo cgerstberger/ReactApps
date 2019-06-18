@@ -22,14 +22,14 @@ export default class FinanceToday extends Component {
       <Card header="Today">
         <TableFinances dailyFinances={this.props.dailyFinances}></TableFinances>
         <div className="float-right">
-            <b>{this.props.dailyFinances.length != 0 && this.props.dailyFinances.reduce((a,c) => {
+            <b>{this.props.dailyFinances.length != 0 ? this.props.dailyFinances.reduce((a,c) => {
                 console.log(a.value + " " + c.value);
                 return {
                     name: "",
                     time: "",
                     value: a.value + c.value
                 };
-            }).value} €</b>
+            }).value : 0} €</b>
         </div>
       </Card>
     )
@@ -52,7 +52,7 @@ const TableFinances = (props) =>
                 <tr>
                     <td style={tdName}>{entry.name}</td>
                     <td style={tdDate}>{formatDate(entry.date)}</td>
-                    <td style={tdWeight}>{entry.value} €</td>
+                    <td style={tdPrice}>{entry.value} €</td>
                 </tr>
             )}
         </tbody>
@@ -64,7 +64,7 @@ const tdName = {
 const tdDate = {
   width: "20%"
 };
-const tdWeight = {
+const tdPrice = {
   width: "30%",
   textAlign: "right"
 };

@@ -7,8 +7,8 @@ export default class DailyWeight extends Component {
     super(props);
     this.state = {
       weight: "",
-      cardVanish: false,
-      cardGone: false
+      cardVanish: true,
+      cardGone: true
     }
     this.handleChangeWeight = this.handleChangeWeight.bind(this);
   }
@@ -19,6 +19,8 @@ export default class DailyWeight extends Component {
         console.log(props.weightEntries[i].date);
         if(this.isDateEqualsCurrentDay(props.weightEntries[i].date)) {
           this.hideCard(true);
+        } else {
+          this.hideCard(false);
         }
       }
     }
@@ -26,6 +28,7 @@ export default class DailyWeight extends Component {
 
   isDateEqualsCurrentDay(date){
     var curDate = new Date();
+    // curDate.setDate(curDate.getDate()-1);
     return curDate.getDate() == date.getDate()
         && curDate.getMonth() == date.getMonth()
         && curDate.getYear() == date.getYear();
@@ -40,9 +43,7 @@ export default class DailyWeight extends Component {
     this.setState({
       cardVanish: hide
     }, () => {
-      console.log("wait 1s");
       setTimeout(() => {
-        console.log("1s gone");
         this.setState({
           cardGone: hide
         })

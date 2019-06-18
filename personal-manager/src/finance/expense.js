@@ -60,12 +60,29 @@ export default class Expense extends React.Component{
       }
 
     createNewExpense(){
+        if(this.state.expense.expenseName === "" || this.state.expense.expenseValue === "") {
+            alert("No empty values allowed!")
+            return;
+        }
         var myExpense = {
             date: new Date(),
             name: this.state.expense.expenseName,
             value: parseFloat(this.state.expense.expenseValue)
         }
         this.props.addExpense(myExpense);
+        this.setState({
+            expense: {
+                expenseName: "",
+                expenseValue: "",
+                date: new Date()
+            },
+        });
+    }
+
+    keyUpEvent = (event) => {
+      if(event.key == 'Enter'){
+        this.createNewExpense();
+      }
     }
 
     showExpense = (show) => this.setState({showExpense: show});
@@ -78,11 +95,21 @@ export default class Expense extends React.Component{
                 <Card header="Expense">
                     <div className="form-row">
                         <div className="col-6 col-md-8">
-                            <input type="text" className="form-control" placeholder="Kino, etc." onChange={this.handleChangeExpenseName}></input>
+                            <input type="text" 
+                                   className="form-control" 
+                                   placeholder="Kino, etc." 
+                                   value={this.state.expense.expenseName}
+                                   onChange={this.handleChangeExpenseName}
+                                   onKeyUp={this.keyUpEvent}></input>
                         </div>
                         <div className="col-3 col-md-2">
                             <div className="input-group mb-3">
-                                <input type="number" className="form-control input-right-align" placeholder="€" onChange={this.handleChangeExpenseValue}></input>
+                                <input type="number" 
+                                       className="form-control input-right-align" 
+                                       placeholder="€" 
+                                       value={this.state.expense.expenseValue}
+                                       onChange={this.handleChangeExpenseValue}
+                                       onKeyUp={this.keyUpEvent}></input>
                                 {/* <div className="input-group-append">
                                     <span className="input-group-text">€</span>
                                 </div> */}

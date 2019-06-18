@@ -18,7 +18,8 @@ export default class FinanceStatistics extends Component {
 				max = value;
 			data[i] = {
 				date: this.props.financeHistory[i].date,
-				value: value
+				value: value,
+
 			}
 		}
     return (
@@ -34,7 +35,7 @@ export default class FinanceStatistics extends Component {
 				>
 					<CartesianGrid strokeDasharray="3 3" />
 					<XAxis dataKey="date" />
-					<YAxis type="number" domain={[Math.round(min-2), Math.round(max+2)]}/>
+					<YAxis type="number" domain={[Math.round(min)-2, Math.round(max)+2]}/>
 					<Tooltip />
 					<Line type="monotone" dataKey="value" stroke="#8884d8" activeDot={{ r: 8 }} />
 				</LineChart>

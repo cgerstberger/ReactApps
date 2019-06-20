@@ -10,35 +10,33 @@
 // To learn more about the benefits of this model and instructions on how to
 // opt-in, read https://bit.ly/CRA-PWA
 
-const isLocalhost = Boolean(
-  window.location.hostname === 'localhost' ||
-    // [::1] is the IPv6 localhost address.
-    window.location.hostname === '[::1]' ||
-    // 127.0.0.1/8 is considered localhost for IPv4.
-    window.location.hostname.match(
-      /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
-    )
-);
+const isLocalhost = false;
+// const isLocalhost = Boolean(
+//   window.location.hostname === 'localhost' ||
+//     // [::1] is the IPv6 localhost address.
+//     window.location.hostname === '[::1]' ||
+//     // 127.0.0.1/8 is considered localhost for IPv4.
+//     window.location.hostname.match(
+//       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
+//     )
+// );
 
 export function register(config) {
-  console.log("register(...)");
-  if (/*process.env.NODE_ENV === 'production' &&*/ 'serviceWorker' in navigator) {
-    console.log("in production");
+  if (/*process.env.NODE_ENV === 'production' && */'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
-    if (false && publicUrl.origin !== window.location.origin) {
-      // Our service worker won't work if PUBLIC_URL is on a different origin
-      // from what our page is served on. This might happen if a CDN is used to
-      // serve assets; see https://github.com/facebook/create-react-app/issues/2374
-      return;
-    }
+    // const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+    // if (publicUrl.origin !== window.location.origin) {
+    //   // Our service worker won't work if PUBLIC_URL is on a different origin
+    //   // from what our page is served on. This might happen if a CDN is used to
+    //   // serve assets; see https://github.com/facebook/create-react-app/issues/2374
+    //   return;
+    // }
 
     window.addEventListener('load', () => {
       console.log("window load event");
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker-custom.js`;
-
+      var swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      swUrl = "./myServiceWorker.js";
       if (isLocalhost) {
-        console.log("if (isLocalhost) = true");
         // This is running on localhost. Let's check if a service worker still exists or not.
         checkValidServiceWorker(swUrl, config);
 
@@ -51,7 +49,6 @@ export function register(config) {
           );
         });
       } else {
-        console.log("if (isLocalhost) = false");
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config);
       }
@@ -63,12 +60,15 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then(registration => {
+      console.log("SW registration successful");
       registration.onupdatefound = () => {
+        console.log("SW registration onupdatefound event");
         const installingWorker = registration.installing;
         if (installingWorker == null) {
           return;
         }
         installingWorker.onstatechange = () => {
+          console.log("SW registration onstatechange event");
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
               // At this point, the updated precached content has been fetched,

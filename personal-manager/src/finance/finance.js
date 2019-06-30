@@ -46,6 +46,7 @@ export default class Finance extends React.Component{
                 historyArr.forEach(x => {
                     sum += x.value;
                 });
+                // historyArr[0].date.setDate(historyArr[0].date.getDate()-2)
                 addFinanceItem({date: historyArr[0].date, value: sum}, (id) => {
                     readAllFinances((finances) => {
                         this.setState({
@@ -65,7 +66,7 @@ export default class Finance extends React.Component{
 
     isDateEqualsCurrentDay(date){
         var curDate = new Date();
-        // curDate.setDate(curDate.getDate() - 1); // to test if daily expenses are transfered to history
+        // curDate.setDate(curDate.getDate() - 2); // to test if daily expenses are transfered to history
         return curDate.getDate() == date.getDate()
             && curDate.getMonth() == date.getMonth()
             && curDate.getYear() == date.getYear();

@@ -45,9 +45,24 @@ const dailyFinancesData = [
    {id: "2", date: new Date(2019, 6, 12, 9, 20, 17), name:"Monitor", value: 75},
    {id: "3", date: new Date(2019, 6, 12, 12, 12, 1), name:"Mittagessen", value: 5.70}
 ];
+
+const weightHistoryEntries = [
+   {id: "1", date: new Date(2019, 6, 6), weight: 75},
+   {id: "2", date: new Date(2019, 6, 7), weight: 74.7},
+   {id: "3", date: new Date(2019, 6, 8), weight: 74.2},
+   {id: "4", date: new Date(2019, 6, 9), weight: 74.5}
+];
+
+const financeHistoryEntries = [
+   {id: "1", date: new Date(2019, 6, 8, 8, 27, 12), value: 154},
+   {id: "2", date: new Date(2019, 6, 9, 9, 20, 17), value: 25},
+   {id: "3", date: new Date(2019, 6, 10, 12, 12, 1), value: 5.70},
+   {id: "4", date: new Date(2019, 6, 12, 19, 19, 19), value: 49.99}
+];
+
 request.onupgradeneeded = function(event) {
    var db = event.target.result;
-   var objectStore = db.createObjectStore("todos", {keyPath: "id"});
+   var todoStore = db.createObjectStore("todos", {keyPath: "id"});
    var weightStore = db.createObjectStore("weights", {keyPath: "id"});
    var dailyFinancesStore = db.createObjectStore("dailyFinances", {keyPath: "id"});
    var financesStore = db.createObjectStore("finances", {keyPath: "id"});
@@ -55,6 +70,12 @@ request.onupgradeneeded = function(event) {
       
    // for (var i in dailyFinancesData) {
    //    dailyFinancesStore.add(dailyFinancesData[i]);
+   // }
+   // for (var i in weightHistoryEntries) {
+   //    weightStore.add(weightHistoryEntries[i]);
+   // }
+   // for (var i in financeHistoryEntries) {
+   //    financesStore.add(financeHistoryEntries[i]);
    // }
 }
 
